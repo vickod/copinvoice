@@ -47,7 +47,7 @@ export default async function Login() {
               />
             </div>
             {/* <Button>Submit</Button> */}
-            <SubmitButton />
+            <SubmitButton text="Login" />
           </form>
         </CardContent>
         {/* <CardFooter>
