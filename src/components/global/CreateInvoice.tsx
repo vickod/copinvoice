@@ -228,12 +228,16 @@ export function CreateInvoice() {
 
             <div>
               <Label>Invoice Due</Label>
-              <Select name={fields.dueDate.name} key={fields.dueDate.key}>
+              <Select
+                name={fields.dueDate.name}
+                key={fields.dueDate.key}
+                defaultValue={fields.dueDate.initialValue}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select due date" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="0">Due on Reciept</SelectItem>
+                  <SelectItem value="1">Due on Reciept</SelectItem>
                   <SelectItem value="15">Net 15</SelectItem>
                   <SelectItem value="30">Net 30</SelectItem>
                 </SelectContent>

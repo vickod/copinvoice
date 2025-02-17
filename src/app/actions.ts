@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { parseWithZod } from '@conform-to/zod';
 import { invoiceSchema, onboardingSchema } from "@/utils/zodSchemas";
 import { prisma } from "@/utils/db";
+import { emailClient } from "@/utils/mailtrap";
 
 export async function onboardUser(prevState: any, formData: FormData) {
     const session = await requireUser();
@@ -66,6 +67,20 @@ export async function createInvoice(prevState: any,formData: FormData){
     updatedAt: new Date(), 
     },
   });
+
+  const sender = {
+    email: "hello@demomailtrap.com",
+    name: "Mailtrap Test",
+  };
+
+  emailClient.send({
+    from:sender,
+    to: [{email:process.env.PERSONAL_MAIL! }],
+    subject: "new Invoice for you",
+    text: "Hey, we have a new invoice for you!",
+    category: "Invoice",
+  })
+
   redirect('/dashboard/invoices');
 
 }
